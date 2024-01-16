@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Ipad pro 11",
+    "description": "Potencia y versatilidad en un dispositivo. Rendimiento excepcional, pantalla envolvente y diseño ultradelgado",
+    "price": 1000,
+    "thumbnail": "asset/images/ipadpro11.jpg",
+    "code": 1,
+    "stock": 10,
+    "id": 1
+  },
+  {
+    "title": "Iphone 13",
+    "description": "Potencia y versatilidad en un dispositivo. Rendimiento excepcional, pantalla envolvente y diseño ultradelgado",
+    "price": 650,
+    "thumbnail": "asset/images/Iphone13.jpg",
+    "code": 1.1,
+    "stock": 5,
+    "id": 2
+  }
+]
