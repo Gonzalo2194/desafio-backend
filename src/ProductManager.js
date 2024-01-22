@@ -1,8 +1,8 @@
 //const fs = require('fs').promises;
 
-//import fs from 'fs';
+import fs from 'fs';
 
-import { promises as fs } from 'fs';
+
 class ProductManager {
     constructor(path) {
         this.products = [];
@@ -12,7 +12,7 @@ class ProductManager {
 
     async cargarProductos() {
         try {
-            const data = await fs.readFile(this.path, 'utf-8');
+            const data = await fs.promises.readFile(this.path, 'utf-8');
             this.products = JSON.parse(data);
         } catch (error) {
 
@@ -22,7 +22,7 @@ class ProductManager {
 
     async guardarProducto() {
         try {
-            await fs.writeFile(this.path, JSON.stringify(this.products,null,2));
+            await fs.promises.writeFile(this.path, JSON.stringify(this.products,null,2));
         } catch (error) {
             console.log("Error al guardar productos:", error.message);
         }
@@ -51,17 +51,23 @@ class ProductManager {
         }
     }
 
-    getProducts() {
-        return this.products;
+    getProducts(limit=0) {
+        limit = Number(limit);
+        if (limit > 0) 
+            return this.products.slice (0, limit);
+        else return this.products
     }
 
     getProductById(id) {
+
         const product = this.products.find(item => item.id === id);
 
         if (product) {
-            console.log("Producto encontrado: ", product);
+            return product;
+            //console.log("Producto encontrado: ", product);
         } else {
-            console.log("Producto no encontrado con ese ID");
+            return ("Producto no encontrado con ese ID");
+            //console.log("Producto no encontrado con ese ID");
         }
     }
 
