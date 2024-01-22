@@ -27,7 +27,7 @@ class ProductManager {
 
     static id = 0;
 
-    addProduct({title, description, price, thumbnail, code, stock}) {
+    async addProduct({title, description, price, thumbnail, code, stock}) {
         const newItem = {
             title,
             description,
@@ -42,7 +42,7 @@ class ProductManager {
 
         if (!missingField) {
             this.products.push(newItem);
-            this.guardarProducto();
+            await this.guardarProducto()
         } else {
             console.log(`Falta el campo "${missingField}"`);
         }
@@ -62,13 +62,13 @@ class ProductManager {
         }
     }
 
-    actualizarProducto(id, updatedFields) {
+    async updateProduct(id, updatedFields) {
         const index = this.products.findIndex(item => item.id === id);
 
         if (index !== -1) {
             const updatedProduct = { ...this.products[index], ...updatedFields, id };
             this.products[index] = updatedProduct;
-            this.guardarProducto();
+            await this.guardarProducto()
             console.log("Producto actualizado:", updatedProduct);
             return updatedProduct;
         } else {
@@ -77,13 +77,13 @@ class ProductManager {
         }
     }
 
-    eliminarProducto(id) {
+    async deleteProduct(id) {
         const index = this.products.findIndex(item => item.id === id);
 
         if (index !== -1) {
             const productName = this.products[index].title;
             this.products.splice(index, 1);
-            this.guardarProducto();
+            await this.guardarProducto() 
             console.log(`Producto ${productName} eliminado`);
         } else {
             console.log("Producto no encontrado para eliminar");
@@ -117,14 +117,26 @@ items.addProduct({
     stock: 5
 });
 
+// Agregar producto 3
+items.addProduct({
+    title: "Macbook m1",
+    description: "Potencia y versatilidad en un dispositivo. Rendimiento excepcional, pantalla envolvente y diseño ultradelgado",
+    price: 2500,
+    thumbnail: "asset/images/macbookm1.jpg",
+    code: 1.2,
+    stock: 12
+});
+
 // Check todos los productos
 console.log("Productos actuales:", items.getProducts());
 
 // Buscador producto por ID
-items.getProductById(1);
+items.getProductById(10);
 
 // Actualizar producto por ID
-items.actualizarProducto(2, { price: 650 });
+items.updateProduct(2, { price: 650 });
 
 // Eliminar producto por ID
-items.eliminarProducto(1);
+items.deleteProduct(5);
+
+

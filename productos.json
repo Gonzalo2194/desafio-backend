@@ -16,5 +16,14 @@
     "code": 1.1,
     "stock": 5,
     "id": 2
+  },
+  {
+    "title": "Macbook m1",
+    "description": "Potencia y versatilidad en un dispositivo. Rendimiento excepcional, pantalla envolvente y diseño ultradelgado",
+    "price": 2500,
+    "thumbnail": "asset/images/macbookm1.jpg",
+    "code": 1.2,
+    "stock": 12,
+    "id": 3
   }
 ]
